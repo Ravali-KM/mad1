@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Add Log</title>
+  </head>
+  <body>
+      <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-8"><h1>Add a new log</h1></div>
+            <div class="col-6 col-md-4"><a href="login.html">Log Out</a></div>
+          </div>    
+        </div>  
+
+    <form>
+        <div class="form-group">
+          <label for="tname">Tracker Name: </label>
+          <input type="text" class="form-control" id="tname" >
+        </div>
+        <div class="form-group">
+          <label for="lnumber">Log Number</label>
+          <input type="number" class="form-control" id="lnubmer" >
+        </div>
+        <div class="form-group">          
+          <label for="Timestamp">Timestamp:</label>
+          <input type="datetime-local" class="form-control" id="Timestamp">
+        </div>
+        <div class="form-group">
+            <label for="lvalue">Value:</label>
+            <input type="number" class="form-control" id="lvalue" >
+        </div>
+        <div class="form-group">
+            <label for="lnote">Note:</label>
+            <input type="text" class="form-control" id="lnote" >
+          </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+  </body>
+</html>
