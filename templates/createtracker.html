@@ -13,8 +13,8 @@
     </head>
     <body>
         <h1>Create a new Tracker</h1>    
-
-        <form action="/dashboard" method="post|get">
+        <p>{{msg}}</p>
+        <form action="/insertnewtracker" method="post">
           <div class="form-group">
             <label for="tname">Tracker Name</label>
             <input type="text" class="form-control" id="tname"  name="tname">
@@ -25,11 +25,11 @@
             </div>            
             <div class="form-group col-md-4">
               <label for="ttype">Tracker Type</label>
-              <select id="ttype" class="form-control">
-                <option selected value="0">Numerical</option>
-                <option value="1">Multile Choice</option>
-                <option value="2">Time Duration</option>
-                <option value="3">Boolean</option>
+              <select id="ttype" name="ttype" class="form-control">
+                <option selected value="Numerical">Numerical</option>
+                <option value="Multile Choice">Multile Choice</option>
+                <option value="Time Duration">Time Duration</option>
+                <option value="Boolean">Boolean</option>
               </select>
             </div>            
             <div class="form-group">          
