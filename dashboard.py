@@ -4,12 +4,13 @@ from flask import Flask, redirect,  url_for, render_template, request,flash, ses
 import sqlite3 as sql
 
 app = Flask(__name__)
-dheadings = ("Trackers","Last Time Stamp","Average value")
+dheadings = ["Trackers","Last Time Stamp","Average value"]
 ddata = []
-
+usrid=''
 
 def dshtable():
-    if request.method == 'POST':     
+    if request.method == 'GET':   
+        usrid=session['usrid']  
         with sql.connect("mad1.db") as con:
             cur = con.cursor()
             cur.execute("SELECT t.Name,l.TimeStamp,avg(l.Value) FROM Tracker t, Log l \

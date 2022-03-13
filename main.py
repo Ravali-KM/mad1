@@ -21,17 +21,22 @@ def login():
 def insertuser():
    return adduser()
 
-@app.route('/checkuser',methods = ['POST'])
+@app.route('/dashboard',methods = ['POST'])
 def chckuser():
    return checkuser()
-       
+
+@app.route('/newtracker')
+def newtracker():
+   return render_template('createtracker.html')
+
 @app.route('/insertnewtracker',methods = ['POST'])
 def inserttracker():
    return addtracker()
 
-@app.route('/dashboard', methods=['POST'])
-def dtable():
-   return dshtable()
+# @app.route('/dashboard')
+# def dtable():
+#    render_template("dashboard.html")
+#    return dshtable()
          
 
 if __name__=='__main__':

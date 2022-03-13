@@ -15,7 +15,7 @@
         <title> Login </title>
     </head>
     <body>
-        <h1>Tracker</h1>
+        <h1>TrackerApp</h1>
         <p>{{msg}}</p>
         {% with messages = get_flashed_messages() %}
             {% if messages %}
@@ -25,7 +25,7 @@
            {% endif %}
         {% endwith %}
         
-        <form action="/checkuser" method="post">
+        <form action="/dashboard" method="post">
             <div class="form-group">
               <label for="username1">Username: </label>
               <input type="text" class="form-control" id="username1" name="username1" >

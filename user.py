@@ -3,6 +3,9 @@ from django.shortcuts import render
 from flask import Flask, redirect,  url_for, render_template, request,flash, session
 import sqlite3 as sql
 
+dheadings = ["Add Log","Trackers","Last Time Stamp","Average value"]
+ddata = []
+
 def adduser():
    msg=''
    if request.method == 'POST':
@@ -35,7 +38,13 @@ def checkuser():
         valemail = cur.fetchone()
         session['usrid']=valemail[0]
         if pwd == valemail[1]:
-           return render_template("dashboard.html", msg =session['usrid']) 
+           usrid=session['usrid']  
+           with sql.connect("mad1.db") as con:
+               cur = con.cursor()
+               cur.execute("select t.Trackerid,t.Name,l.TimeStamp,l.Value from Tracker t \
+                  left outer join Log l using (TrackerId) where t.UserId=(?)",[usrid])
+               ddata=cur.fetchall()
+               return render_template("dashboard.html",dheadings=dheadings, ddata = ddata)
               
         else:
             flash('Looks you are not registered') 

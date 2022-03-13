@@ -7,21 +7,16 @@ def addtracker():
    msg=''
    usrid=''
    if request.method == 'POST':
-      try:
-         tn = request.form['tname']
-         td = request.form['tdescription']  
-         tt = request.form['ttype']
-         ts = request.form['tsettings']       
-         usrid=session['usrid']
-         with sql.connect("mad1.db") as con:
-            cur = con.cursor()
-            cur.execute("INSERT INTO Tracker (Name,Description,TrackerType,Settings,UserId)  VALUES (?,?,?,?,?)",(tn,td,tt,ts,usrid) )
-            con.commit()
-            msg = "Record successfully added"
-      except:
-         con.rollback()
-         msg = "error in insert operation"
-      
-      finally:
-        con.close()
-        return render_template("dashboard.html",msg = [msg,tn,td,tt,ts,usrid])
+      tn = request.form['tname']
+      td = request.form['tdescription']  
+      tt = request.form['ttype']
+      ts = request.form['tsettings']       
+      usrid=session['usrid']
+      with sql.connect("mad1.db") as con:
+         cur = con.cursor()
+         cur.execute("INSERT INTO Tracker (Name,Description,TrackerType,Settings,UserId)  VALUES (?,?,?,?,?)",(tn,td,tt,ts,usrid) )
+         con.commit()
+         msg = "Record successfully added"
+
+   con.close()
+   return render_template("dashboard.html",msg = [msg,tn,td,tt,ts,usrid])
