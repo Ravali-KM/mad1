@@ -15,11 +15,12 @@
     </head>
     <body>
         <h1>{{msg}}</h1>
-        <p>{{dheaddings}}</p>
+        <p>{{dheadings}}</p>
         <p>{{ddata}}</p>
+        <a href='/insertnewtracker'>Create new Tracker</a>
         <table>
           <tr>
-            {% for dheader in dheaddings %}
+            {% for dheader in dheadings %}
             <th>{{ dheader }}</th>
             {% endfor %}
           </tr>          
