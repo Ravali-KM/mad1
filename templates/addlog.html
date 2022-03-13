@@ -7,7 +7,11 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+    <style>
+      form{
+        margin: 40px;
+      }
+    </style>
     <title>Add Log</title>
   </head>
   <body>
@@ -19,13 +23,10 @@
         </div>  
 
     <form>
-        <div class="form-group">
-          <label for="tname">Tracker Name: </label>
-          <input type="text" class="form-control" id="tname" >
-        </div>
+        
         <div class="form-group">
           <label for="lnumber">Log Number</label>
-          <input type="number" class="form-control" id="lnubmer" >
+          <input type="number" class="form-control" id="lnumber" >
         </div>
         <div class="form-group">          
           <label for="Timestamp">Timestamp:</label>
@@ -33,13 +34,13 @@
         </div>
         <div class="form-group">
             <label for="lvalue">Value:</label>
-            <input type="number" class="form-control" id="lvalue" >
+            <input type="text" class="form-control" id="lvalue" >
         </div>
         <div class="form-group">
             <label for="lnote">Note:</label>
             <input type="text" class="form-control" id="lnote" >
           </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Add Log</button>
       </form>
   </body>
 </html>
