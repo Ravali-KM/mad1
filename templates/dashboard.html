@@ -15,6 +15,8 @@
     </head>
     <body>
         <h1>{{msg}}</h1>
+        <p>{{dheaddings}}</p>
+        <p>{{ddata}}</p>
         <table>
           <tr>
             {% for dheader in dheaddings %}
@@ -25,10 +27,9 @@
           <tr>
             {% for cell in row %}
             <td>{{ cell }}</td>
-            { endfor }
+            {% endfor %}
           </tr>
-          { endfor }
-          
+          {% endfor %}
         </table>
     </body>
 </html>

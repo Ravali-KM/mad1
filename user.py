@@ -35,7 +35,7 @@ def checkuser():
         valemail = cur.fetchone()
         session['usrid']=valemail[0]
         if pwd == valemail[1]:
-           return render_template("createtracker.html", msg =session['usrid']) 
+           return render_template("dashboard.html", msg =session['usrid']) 
               
         else:
             flash('Looks you are not registered') 

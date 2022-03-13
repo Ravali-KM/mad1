@@ -4,6 +4,7 @@ from flask import Flask, redirect,  url_for, render_template, request,flash, ses
 import sqlite3 as sql
 from user import *
 from tracker import *
+from dashboard import *
 
 app = Flask(__name__)
 app.secret_key="ravali"
@@ -27,6 +28,10 @@ def chckuser():
 @app.route('/insertnewtracker',methods = ['POST'])
 def inserttracker():
    return addtracker()
+
+@app.route('/dashboard', methods=['POST'])
+def dtable():
+   return dshtable()
          
 
 if __name__=='__main__':
