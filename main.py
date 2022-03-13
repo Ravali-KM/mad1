@@ -2,9 +2,11 @@ import re
 from django.shortcuts import render
 from flask import Flask, redirect,  url_for, render_template, request,flash, session
 import sqlite3 as sql
+from log import *
 from user import *
 from tracker import *
 from dashboard import *
+
 
 app = Flask(__name__)
 app.secret_key="ravali"
@@ -32,6 +34,14 @@ def newtracker():
 @app.route('/insertnewtracker',methods = ['POST'])
 def inserttracker():
    return addtracker()
+
+@app.route('/log/<int:trackerid>/<string:trackername>')
+def insertlog(trackerid: int, trackername: str):
+   return render_template('addlog.html',ti=trackerid, tn=trackername)
+
+@app.route('/addlog', methods =['POST'])
+def newlog():
+   return addlog()
 
 # @app.route('/dashboard')
 # def dtable():
