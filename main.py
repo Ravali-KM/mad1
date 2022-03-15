@@ -5,7 +5,6 @@ import sqlite3 as sql
 from log import *
 from user import *
 from tracker import *
-from dashboard import *
 
 
 app = Flask(__name__)
@@ -39,9 +38,20 @@ def inserttracker():
 def insertlog(trackerid: int, trackername: str):
    return render_template('addlog.html',ti=trackerid, tn=trackername)
 
-@app.route('/addlog', methods =['POST'])
+@app.route('/addlog', methods =['POST','GET'])
 def newlog():
    return addlog()
+
+@app.route('/tracker/<int:trackerid>')
+def trackerdisp(trackerid:int):
+   return logtable(tid= trackerid)
+
+# @app.route('/displog',methods=['POST'])
+# def logdisp():
+#    return logtable()
+
+
+
 
 # @app.route('/dashboard')
 # def dtable():

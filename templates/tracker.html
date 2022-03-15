@@ -8,25 +8,25 @@
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <style>
-            form{
+            table{
               margin: 40px;
             }
           </style>
     </head>
     <body>
-        <h1>{{msg}}</h1>
-        <p>{{ddata}}</p>
-        <a href='/newtracker'>Create new Tracker</a>
+        
+        <p>{{ldata}}</p>
+        <a href='/addlog'>Create new log</a>
         <table>
           <tr>
-            {% for dheader in dheadings %}
-            <th>{{ dheader }}</th>
+            {% for lheader in lheadings %}
+            <th>{{ lheader }}</th>
             {% endfor %}
           </tr>          
-          {% for row in ddata %}
+          {% for row in ldata %}
           <tr>
-            <td><a href='/log/{{row[0]}}/{{row[1]}}'>+</a></td>
-            <td><a href='/tracker/{{row[0]}}'>{{row[1]}}</a></td>
+            <td><a href='/addlog'>+</a></td>
+            <td>{{row[1]}}</td>
             <td>{{row[2]}}</td>
             <td>{{row[3]}}</td>            
           </tr>

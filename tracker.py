@@ -20,3 +20,23 @@ def addtracker():
 
    con.close()
    return render_template("dashboard.html",msg = [msg,tn,td,tt,ts,usrid])
+
+
+lheadings = ["Time","Value","Note"]
+ldata = []
+
+def logtable(tid):
+   usrid=''
+   if request.method == 'GET':
+      usrid=session['usrid']
+      with sql.connect("mad1.db") as con:
+         cur = con.cursor()
+         cur.execute('SELECT LogId,TimeStamp,Value,Note FROM Log \
+            WHERE TrackerId=(?) AND UserId=(?)',[tid,usrid])
+         ldata = cur.fetchall()
+         return render_template('tracker.html',lheadings=lheadings,ldata=ldata)
+         
+         
+        
+         
+         
