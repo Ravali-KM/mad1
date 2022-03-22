@@ -10,11 +10,12 @@ from tracker import *
 app = Flask(__name__)
 app.secret_key="ravali"
 
+
 @app.route('/signup')
 def signup():
     return render_template('signup.html')
 
-@app.route('/login')
+@app.route('/')
 def login():
     return render_template('login.html')
 
@@ -73,7 +74,7 @@ def editlog():
 @app.route('/logout')
 def logout():
    session['usrid']= ''
-   return render_template('/login.html')
+   return render_template('login.html')
 
 
 if __name__=='__main__':

@@ -33,7 +33,7 @@ def adduser():
       
       finally:
         con.close()
-        return render_template("login.html",msg = [msg,un,pwd])
+        return render_template("login.html",msg = msg)
 
 
 def checkuser():
@@ -45,14 +45,13 @@ def checkuser():
         cur = con.cursor()
         cur.execute("SELECT Userid,Password FROM users where UserName = (?)",[un1])
         valemail = cur.fetchone()
-        session['usrid']=valemail[0]
         if pwd == valemail[1]:
-           usrid=session['usrid']  
-           return dashboard(usrid, msg="successfully logged in")
-              
+            usrid=session['usrid']  
+            return dashboard(usrid, msg="successfully logged in")
+             
         else:
             flash('Looks you are not registered') 
-            return redirect(url_for('login'))
+            return render_template('login.html')
 
 def dashboard(usrid, msg):
    with sql.connect("mad1.db") as con:
