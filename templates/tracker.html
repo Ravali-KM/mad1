@@ -4,32 +4,41 @@
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>Dashboard</title>
+        <title>Tracker</title>
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <style>
             table{
               margin: 40px;
+              text-align: center;
             }
+
           </style>
     </head>
     <body>
+      <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-8"><h1>Your Logs</h1></div>
+            <div class="col-6 col-md-4"><a href='/logout'>Log Out</a></div>
+          </div>    
+        </div>  
+        <div class="container">
         
-        <p>{{ldata}}</p>
-        <a href='/addlog'>Create new log</a>
-        <img src="{{ image }}"/>
-        <table>
+        <img src={{url}} alt="Chart" height="600" width="800">
+        <table class="table align-middle table-sm">
           <tr>
             {% for lheader in lheadings %}
-            <th>{{ lheader }}</th>
+            <th class="table-dark">{{ lheader }}</th>
             {% endfor %}
           </tr>          
           {% for row in ldata %}
           <tr>
-            <td><a href='/addlog'>+</a></td>
+            
             <td>{{row[1]}}</td>
             <td>{{row[2]}}</td>
-            <td>{{row[3]}}</td>            
+            <td>{{row[3]}}</td>
+            <td><a href='/lgedit/{{row[0]}}'>Edit</a></td>
+            <td><a href='/logdelete/{{row[0]}}'>Delete</a></td>            
           </tr>
           {% endfor %}
         </table>

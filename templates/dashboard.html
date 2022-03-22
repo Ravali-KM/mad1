@@ -11,24 +11,39 @@
             form{
               margin: 40px;
             }
+            td{
+              text-align: center;
+            }
+            tr{
+              text-align: center;
+            }
           </style>
     </head>
     <body>
-        <h1>{{msg}}</h1>
-        <p>{{ddata}}</p>
+      <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-8"><h1>My QuantifiedSelf</h1></div>
+            <div class="col-6 col-md-4"><a href='/logout'>Log Out</a></div>
+          </div>    
+        </div>  
+        <div class="container">  
+          <h3 style="text-align:center;">{{msg}}</h3>
+        
         <a href='/newtracker'>Create new Tracker</a>
-        <table>
+        <table class="table align-middle table-sm">
           <tr>
             {% for dheader in dheadings %}
-            <th>{{ dheader }}</th>
+            <th class="table-dark">{{ dheader }}</th>
             {% endfor %}
           </tr>          
           {% for row in ddata %}
           <tr>
-            <td><a href='/log/{{row[0]}}/{{row[1]}}'>+</a></td>
+            <td><a href='/log/{{row[0]}}/{{row[1]}}' class="text-center">+</a></td>
             <td><a href='/tracker/{{row[0]}}'>{{row[1]}}</a></td>
             <td>{{row[2]}}</td>
-            <td>{{row[3]}}</td>            
+            <td>{{row[3]}}</td> 
+            <td><a href='/trkredit/{{row[0]}}'>Edit</a></td>     
+            <td><a href='/trackerdelete/{{row[0]}}'>Delete</a></td>      
           </tr>
           {% endfor %}
         </table>

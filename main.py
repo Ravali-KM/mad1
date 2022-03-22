@@ -46,18 +46,35 @@ def newlog():
 def trackerdisp(trackerid:int):
    return logtable(tid= trackerid)
 
-# @app.route('/displog',methods=['POST'])
-# def logdisp():
-#    return logtable()
+@app.route('/trackerdelete/<int:trackerid>')
+def deletetracker(trackerid:int):
+   return deltracker(tid=trackerid)
 
+@app.route('/trkredit/<int:trackerid>')
+def editrkr(trackerid:int):
+   return trkedit(tid=trackerid)
 
+@app.route('/trackeredit', methods = ['POST'])
+def edittracker():
+   return editracker()
 
+@app.route('/logdelete/<int:logid>')
+def deletelog(logid:int):
+   return dellog(lid=logid)
 
-# @app.route('/dashboard')
-# def dtable():
-#    render_template("dashboard.html")
-#    return dshtable()
-         
+@app.route('/lgedit/<int:logid>')
+def editlg(logid:int):
+   return logedit(lid=logid)
+
+@app.route('/logedit', methods = ['POST'])
+def editlog():
+   return edtlog()
+
+@app.route('/logout')
+def logout():
+   session['usrid']= ''
+   return render_template('/login.html')
+
 
 if __name__=='__main__':
     app.run(debug= True)

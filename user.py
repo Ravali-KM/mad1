@@ -4,7 +4,7 @@ from django.shortcuts import render
 from flask import Flask, redirect,  url_for, render_template, request,flash, session
 import sqlite3 as sql
 
-dheadings = ["Add Log","Trackers","Last Time Stamp","Average value"]
+dheadings = ["Add Log","Trackers","Last Time Stamp","Average value","Edit","Delete"]
 ddata = []
 
 def adduser():
@@ -15,10 +15,18 @@ def adduser():
          pwd = request.form.get('password')         
          with sql.connect("mad1.db") as con:
             cur = con.cursor()
-            cur.execute("INSERT INTO users (UserName,Password)  VALUES (?,?)",[un,pwd] )
-            
-            con.commit()
-            msg = "Record successfully added"
+            cur.execute("SELECT UserName FROM users")
+            uname= cur.fetchall()     
+            for i in uname:
+              if un in i:
+                  raise Exception
+              else:  
+                  cur.execute("INSERT INTO users (UserName,Password)  VALUES (?,?)",[un,pwd] ) 
+                  con.commit()
+                  msg = "Record successfully added"
+      except Exception:
+         con.rollback()
+         msg = "username already taken, try again with another user name"
       except:
          con.rollback()
          msg = "error in insert operation"
@@ -40,22 +48,29 @@ def checkuser():
         session['usrid']=valemail[0]
         if pwd == valemail[1]:
            usrid=session['usrid']  
-           with sql.connect("mad1.db") as con:
-               cur = con.cursor()
-               cur.execute("Select count(*) from Tracker Where userId=(?)",[usrid])
-               number = cur.fetchone()
-               count = int(''.join(map(str, number))) 
-               
-               while(count!=0):
-                  count-=1
-                  cur.execute("select t.Trackerid,t.Name,max(l.TimeStamp),avg(l.Value)\
-                     from Tracker t \
-                     left outer join Log l using (TrackerId) where t.UserId=(?)",[usrid])
-                  ddata=cur.fetchall()
-                  return render_template("dashboard.html",dheadings=dheadings, ddata = ddata)
+           return dashboard(usrid, msg="successfully logged in")
               
         else:
             flash('Looks you are not registered') 
             return redirect(url_for('login'))
 
+def dashboard(usrid, msg):
+   with sql.connect("mad1.db") as con:
+      cur = con.cursor()
+      ddata=[]
+      cur.execute("select t.Trackerid,t.Name from tracker t where t.UserId=(?)",[usrid])
+      ddata=cur.fetchall()
+      fdata=[]
+      for i in ddata:
+         j=list(i)
+         cur.execute("select max(timestamp),avg(value) from log where trackerid=(?)",[i[0]])
+         k=cur.fetchall()
+         if k[0][0] != None :
+            j.append(k[0][0])
+            if k[0][1] != None:
+               j.append(k[0][1])                     
+            fdata.append(j)
+         else:
+            fdata.append(i)
+      return render_template("dashboard.html",dheadings=dheadings, ddata = fdata, msg=msg)
 
